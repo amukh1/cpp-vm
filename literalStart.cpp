@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <bitset>
+#include <vector>
 
 #include "CPU.h"
 #include "Calculus.h"
