@@ -38,6 +38,7 @@
   "files.associations": {
     "*html": "html",
     "*.axs": "axtionscript",
-    "ostream": "cpp"
+    "ostream": "cpp",
+    "iostream": "cpp"
   }
 }

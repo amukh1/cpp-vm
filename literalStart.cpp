@@ -2,7 +2,8 @@
 #include <string>
 #include <bitset>
 
-#include"CPU.h"
+#include "CPU.h"
+#include "Calculus.h"
 
  
 using namespace std;
@@ -31,6 +32,10 @@ using namespace std;
 //   };
 
 // };
+
+float quadratic(float x) {
+  return x * x;
+}
  
 // This program prints out “Hello World!”
 int main(int argc, char* argv[]) {
@@ -40,6 +45,10 @@ int main(int argc, char* argv[]) {
   CPU cpu;
 
   cpu.runLine("0001", {"0011"});
+
+  cout << (float) derivative(&quadratic, 3) << endl; 
+
+  cout << (float) riemann(&quadratic, 0, 3, 20) << endl;
     
   return 0;
 }
