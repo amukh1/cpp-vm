@@ -15,18 +15,24 @@ float quadratic(float x) {
  
 // This program prints out “Hello World!”
 int main(int argc, char* argv[]) {
-  string message = "Hello World!\n";
-  cout << message;
 
   CPU cpu;
 
-  cpu.runLine("0001", {"0011"});
+  cpu.ro_memory.push_back({"0001", "0011"});
+  cpu.ro_memory.push_back({"0001", "0111"});
 
+  cpu.run();
+
+  cout << cpu.cmemory() << endl;
+
+  /* calculus */
+  /*
   cout << (float) derivative(&quadratic, 3) << endl; 
 
   cout << (float) riemann(&quadratic, 0, 3, 20) << endl;
 
   cout << (float)limit(&quadratic, 4) << endl;
+  */
     
   return 0;
 }
