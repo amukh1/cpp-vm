@@ -23,3 +23,7 @@ float riemann(float (*fn)(float), float a, float b, int n) {
     
         return sum * h;
 }
+
+float limit(float (*fn)(float), float a) {
+        return fn(a - h) + ((fn(a + h) - fn(a - h))/2);
+}

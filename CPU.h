@@ -22,13 +22,3 @@ unsigned long decimal = bitset<4>(operand[0]).to_ulong();
 
 
 };
-
-// int main(int argc, char* argv[]) {
-
-// cout << "Hello World!\n";
-
-// CPU cpu;
-// cpu.runLine("0001", "0011");
-
-// return 0;
-// }
