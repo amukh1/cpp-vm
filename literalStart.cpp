@@ -2,6 +2,8 @@
 #include <string>
 #include <bitset>
 
+#include"CPU.h"
+
  
 using namespace std;
 
@@ -21,35 +23,42 @@ using namespace std;
 //     return tokens;
 // }
 
-class CPU {
-  public:
-  void runLine(string line) {
-    // vector<string> tokens = split(line, " ");
-cout << "C++..." << endl;
-  };
+// class CPU {
+//   public:
+//   void runLine(string line) {
+//     // vector<string> tokens = split(line, " ");
+// cout << "C++..." << endl;
+//   };
 
-};
+// };
  
 // This program prints out “Hello World!”
 int main(int argc, char* argv[]) {
   string message = "Hello World!\n";
   cout << message;
-  int a = 4;
-  int* b = &a;
-  // cout << b << endl;
-  // cout << *b << endl;
-  // cout << &a << endl;
+
+  CPU cpu;
+
+  cpu.runLine("0001", {"0011"});
+    
+  return 0;
+}
+
+
+/*
+Binary Strings:
   string binary = bitset<8>(a).to_string(); //to binary
   cout<<binary<<"\n";
 
   unsigned long decimal = bitset<8>(binary).to_ulong();
   cout<<decimal<<"\n";
 
-  string line = "0001 hi";
+Pointers and References:
 
-  CPU cpu;
+  int a = 4;
+  int* b = &a;
 
-  cpu.runLine(line);
-    
-  return 0;
-}
+  cout << b << endl;
+  cout << *b << endl;
+  cout << &a << endl;
+*/
