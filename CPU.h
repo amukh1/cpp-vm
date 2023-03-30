@@ -34,11 +34,19 @@ void run_line(vector<string> mem) {
     unsigned long reg1 = bitset<4>(mem[1]).to_ulong();
     unsigned long reg2 = bitset<4>(mem[2]).to_ulong();
     cout << "Move reg $" << reg1 << " to reg $" << reg2 << endl;
+    registers.insert(registers.begin() + reg2, registers[reg1]);
   }else if(mem[0] == "0011") {
     // allocate (to ram)
-    unsigned long decimal = bitset<8>(mem[2]).to_ulong();
-    cout<<decimal<< " in ram slot %" << bitset<4>(mem[1]).to_ulong() << endl;
-    ra_memory.insert(ra_memory.begin() + bitset<4>(mem[1]).to_ulong(), mem[2]);
+    unsigned long port = bitset<4>(mem[1]).to_ulong();
+    string reg = registers[ bitset<4>(mem[2]).to_ulong()];
+    cout<< bitset<8>(reg).to_ulong() << " in ram slot %" << port << endl;
+    ra_memory.insert(ra_memory.begin() + port, reg);
+  }else if(mem[0] == "0100") {
+    // out
+    unsigned long port = bitset<4>(mem[1]).to_ulong();
+    unsigned long reg = bitset<4>(mem[2]).to_ulong();
+
+    cout << "Out " << bitset<8>(registers[reg]).to_ulong() << " to port " << port << endl;
   }
 }
 
