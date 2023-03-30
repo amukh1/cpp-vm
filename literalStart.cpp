@@ -27,6 +27,10 @@ int main(int argc, char* argv[]) {
 
   cout << cpu.crom() << endl;
 
+  cout << "--------" << endl;
+
+  cout << cpu.cmem() << endl;
+
   /* calculus */
   /*
   cout << (float) derivative(&quadratic, 3) << endl; 

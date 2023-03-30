@@ -53,6 +53,20 @@ string crom() {
   }
   return output;
   }
+
+string cmem() {
+  // put ra_memory and registers into a table-like string
+  string output = "ram: ";
+  for(int i = 0; i < ra_memory.size(); i++) {
+    output += ra_memory[i] + ";";
+  }
+  output += "\nrom: ";
+  for(int i = 0; i < registers.size(); i++) {
+    output += registers[i] + ";";
+  }
+  return output;
+}
+
 };
 
 /*
