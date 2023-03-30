@@ -8,20 +8,41 @@ using namespace std;
 class CPU {
 public:
 vector<vector<string>> ro_memory;
-vector<string> ra_memory;
+vector<string> ra_memory = {"00000000", "00000000"};
+vector<string> registers = {"00000000", "00000000"};
 
 int run() {
-  // for(int i = 0; i < ro_memory.size(); i++) {
-  //   runLine(ro_memory[i][0], ro_memory[i][1]);
-  // }
-  // return 0;
+  for(int i = 0; i < ro_memory.size(); i++) {
+    if(ro_memory[i][0] == "0000") {
+      cout << "Halt" << endl;
+      return 0;
+    }
+    run_line(ro_memory[i]);
+  }
 
-  cout << "WIP" << endl;
   return 0;
 }
 
-string cmemory() {
-  // ro_memory is a vector containing vectors, turn ro_memory and its children into a string-table thing
+void run_line(vector<string> mem) {
+  if(mem[0] == "0001") {
+    // load immediate
+    unsigned long decimal = bitset<8>(mem[2]).to_ulong();
+    cout<<decimal<< " in reg $" << bitset<4>(mem[1]).to_ulong() << endl;
+    registers.insert(registers.begin() + bitset<4>(mem[1]).to_ulong(), mem[2]);
+  }else if(mem[0] == "0010") {
+    // move
+    unsigned long reg1 = bitset<4>(mem[1]).to_ulong();
+    unsigned long reg2 = bitset<4>(mem[2]).to_ulong();
+    cout << "Move reg $" << reg1 << " to reg $" << reg2 << endl;
+  }else if(mem[0] == "0011") {
+    // allocate (to ram)
+    unsigned long decimal = bitset<8>(mem[2]).to_ulong();
+    cout<<decimal<< " in ram slot %" << bitset<4>(mem[1]).to_ulong() << endl;
+    ra_memory.insert(ra_memory.begin() + bitset<4>(mem[1]).to_ulong(), mem[2]);
+  }
+}
+
+string crom() {
   string output = "";
   for(int i = 0; i < ro_memory.size(); i++) {
     string out2 = "|";
@@ -31,8 +52,7 @@ string cmemory() {
     output += (out2 + "|" + "\n");
   }
   return output;
-}
-
+  }
 };
 
 /*

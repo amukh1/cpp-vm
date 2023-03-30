@@ -18,12 +18,14 @@ int main(int argc, char* argv[]) {
 
   CPU cpu;
 
-  cpu.ro_memory.push_back({"0001", "0011"});
-  cpu.ro_memory.push_back({"0001", "0111"});
+  cpu.ro_memory.push_back({"0001", "0001", "00000111"});
+  cpu.ro_memory.push_back({"0010", "0001", "0010", "0000"});
+  cpu.ro_memory.push_back({"0011", "0001", "0010", "0000"});
+  cpu.ro_memory.push_back({"0000", "000000000000"});
 
   cpu.run();
 
-  cout << cpu.cmemory() << endl;
+  cout << cpu.crom() << endl;
 
   /* calculus */
   /*
