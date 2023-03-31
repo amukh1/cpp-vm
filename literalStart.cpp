@@ -36,8 +36,8 @@ int main(int argc, char *argv[]) {
   cpu.ro_memory.push_back({"0101", "0001", "0001", "0000"});
   cpu.ro_memory.push_back({"0110", "0000", "0001", "0000"});
   cpu.ro_memory.push_back({"0011", "0001", "0000", "0000"});
-  // cpu.ro_memory.push_back({"0100", "0001", "0001", "0000"});
-  cpu.ro_memory.push_back({"1000", "0001", "0000", "0000"});
+  cpu.ro_memory.push_back({"0100", "0001", "0001", "0000"});
+  cpu.ro_memory.push_back({"0111", "0000", "0001", "0000"});
   cpu.ro_memory.push_back({"0000", "000000000000"});
 
   cpu.run();

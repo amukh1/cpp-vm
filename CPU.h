@@ -17,15 +17,12 @@ public:
 
   int run() {
     for (int i = line; i < ro_memory.size(); i++) {
-                  cout << i << endl;
       if (ro_memory[i][0] == "0000") {
         // cout << "Halt" << endl;
         ca_memory.push_back("Halt");
         return 0;
       }
       run_line(ro_memory[i]);
-      line++;
-            i = line;
     }
 
     return 0;
@@ -129,7 +126,7 @@ public:
                                     bitset<8>(registers[reg2]).to_ulong()) +
                           " to reg $" + to_string(outreg));
 
-      registers[outreg] = bitset<8>(bitset<8>(registers[reg1]).to_ulong() +
+      registers[outreg] = bitset<8>(bitset<8>(registers[reg1]).to_ulong() -
                                     bitset<8>(registers[reg2]).to_ulong())
                               .to_string();
     }else if(mem[0] == "1000") {
