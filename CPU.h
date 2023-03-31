@@ -13,15 +13,19 @@ public:
   vector<string> ca_memory;
   vector<string> ra_memory = {"00000000", "00000000"};
   vector<string> registers = {"00000000", "00000000"};
+  int line = 0;
 
   int run() {
-    for (int i = 0; i < ro_memory.size(); i++) {
+    for (int i = line; i < ro_memory.size(); i++) {
+                  cout << i << endl;
       if (ro_memory[i][0] == "0000") {
         // cout << "Halt" << endl;
         ca_memory.push_back("Halt");
         return 0;
       }
       run_line(ro_memory[i]);
+      line++;
+            i = line;
     }
 
     return 0;
@@ -108,6 +112,44 @@ public:
       registers[outreg] = bitset<8>(bitset<8>(registers[reg1]).to_ulong() +
                                     bitset<8>(registers[reg2]).to_ulong())
                               .to_string();
+    }else if(mem[0] == "0111") {
+      // sub
+      unsigned long reg1 = bitset<4>(mem[1]).to_ulong();
+      unsigned long reg2 = bitset<4>(mem[2]).to_ulong();
+      unsigned long outreg = bitset<4>(mem[3]).to_ulong();
+
+      // cout << "Add reg $" << reg1 << " and reg $" << reg2 << " = "
+      // << bitset<8>(registers[reg1]).to_ulong() +
+      // bitset<8>(registers[reg2]).to_ulong()
+      // << " to reg $" << outreg << endl;
+
+      ca_memory.push_back("Sub reg $" + to_string(reg1) + " and reg $" +
+                          to_string(reg2) + " = " +
+                          to_string(bitset<8>(registers[reg1]).to_ulong() -
+                                    bitset<8>(registers[reg2]).to_ulong()) +
+                          " to reg $" + to_string(outreg));
+
+      registers[outreg] = bitset<8>(bitset<8>(registers[reg1]).to_ulong() +
+                                    bitset<8>(registers[reg2]).to_ulong())
+                              .to_string();
+    }else if(mem[0] == "1000") {
+      // jump
+      unsigned long reg = bitset<4>(mem[1]).to_ulong();
+      unsigned long linee = bitset<8>(registers[reg]).to_ulong();
+
+      ca_memory.push_back("Jump to line " + to_string(line));
+
+      line = linee - 1;
+    }else if(mem[0] == "1001") {
+      // jump cond. (if reg == 0)
+      unsigned long reg = bitset<4>(mem[1]).to_ulong();
+      unsigned long linee = bitset<8>(registers[reg]).to_ulong();
+
+      ca_memory.push_back("Jump to line " + to_string(line) + " if reg $" + to_string(reg) + " == 0");
+
+      if(bitset<8>(registers[reg]).to_ulong() == 0) {
+        line = linee - 1;
+      }
     }
   }
 
