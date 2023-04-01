@@ -46,15 +46,6 @@ int main(int argc, char *argv[]) {
 
   cpu.cmem();
 
-  /* calculus */
-  /*
-  cout << (float) derivative(&quadratic, 3) << endl;
-
-  cout << (float) riemann(&quadratic, 0, 3, 20) << endl;
-
-  cout << (float)limit(&quadratic, 4) << endl;
-  */
-
   return 0;
 }
 

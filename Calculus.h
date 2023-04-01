@@ -5,10 +5,11 @@
 
 using namespace std;
 
+// FIX THIS ERROR WAITING TO HAPPEN! MOVE DEFINITIONS TO .cpp FILE
+
 float h = 0.0001;
 
 float derivative(float (*fn)(float), float x) {
-
     return (float) (fn(x + h) - fn(x)) / h;
 }
 
